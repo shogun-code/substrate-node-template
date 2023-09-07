@@ -271,7 +271,28 @@ impl pallet_sudo::Config for Runtime {
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
-	type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
+}
+
+impl pallet_student::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+}
+
+impl pallet_kitties::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+}
+
+impl pallet_todo::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+}
+
+impl pallet_tightly_coupling::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+}
+
+impl pallet_loosely_coupling::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type IncreaseValue = TemplateModule;
+	type Amount = ConstU32<10>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -286,6 +307,11 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+        StudentModule: pallet_student,
+        KittiesModule: pallet_kitties,
+        ToDoModule: pallet_todo,
+		TightlyModue: pallet_tightly_coupling,
+		LooselyModule: pallet_loosely_coupling,
 	}
 );
 
